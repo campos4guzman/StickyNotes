@@ -9,6 +9,7 @@ class Nota{
         this.tag=document.createElement("div");
         this.tag.setAttribute("width", 200);
         this.tag.setAttribute("height", 200);
+        this.tag.setAttribute("class",this.id);
         this.tag.innerHTML="<p>"+this.dia+"&nbsp;&nbsp;"+this.hora+"<br/>"+"<br/>"+this.texto+"</p>";
         document.getElementById("conte").appendChild(this.tag);
     }
@@ -29,6 +30,37 @@ document.getElementById("button").onclick=añadir;
 
 
 
+function mover(){
+    var mousePosition;
+var offset = [0,0];
+var isDown = false;
 
+var div = document.getElementsByClassName("0")[0];
 
+div.addEventListener('mousedown', function(e) {
+    isDown = true;
+    offset = [
+        div.offsetLeft - e.clientX,
+        div.offsetTop - e.clientY
+    ];
+}, true);
+
+document.addEventListener('mouseup', function() {
+    isDown = false;
+}, true);
+
+document.addEventListener('mousemove', function(event) {
+    event.preventDefault();
+    if (isDown) {
+        mousePosition = {
+
+            x : event.clientX,
+            y : event.clientY
+
+        };
+        div.style.left = (mousePosition.x + offset[0]) + 'px';
+        div.style.top  = (mousePosition.y + offset[1]) + 'px';
+    }
+}, true);
+}
 
