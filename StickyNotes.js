@@ -9,8 +9,7 @@ class Nota{
         this.tag=document.createElement("div");
         this.tag.setAttribute("width", 200);
         this.tag.setAttribute("height", 200);
-        this.tag.innerHTML="<p>"+this.dia+"</p>"+"<p>"+this.hora+"</p>"+"<p>"+this.texto+"</p>";
-        this.tag.style.backgroundColor="yellow";
+        this.tag.innerHTML="<p>"+this.dia+"&nbsp;&nbsp;"+this.hora+"<br/>"+"<br/>"+this.texto+"</p>";
         document.getElementById("conte").appendChild(this.tag);
     }
 }
@@ -21,6 +20,7 @@ function añadir(){
     var hora=d.getHours()+':'+d.getMinutes()+':'+d.getSeconds();
     var nota=new Nota(document.getElementById("intro").value,hora,fecha,cont);
     cont++;
+    document.getElementById("intro").value="";
     return nota;
 }
 
